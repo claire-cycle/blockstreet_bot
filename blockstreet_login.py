@@ -40,8 +40,8 @@ class BlockStreetLogin:
             raise ValueError("YesCaptcha API密钥和ID必须通过参数或环境变量提供")
         
         self.base_url = "https://api.blockstreet.money"
-        self.website_url = "https://blockstreet.money"
-        self.website_key = "0x4AAAAAABpfyUqunlqwRBYN"
+        self.website_url = "https://blockstreet.money/dashboard"
+        self.website_key = "6Ld-0_ErAAAAACHvVQQLpjeEeXEKiIKvTCk-5emf"
         self.chain_id = 56
         
         # 初始化验证码API
@@ -264,7 +264,7 @@ Expiration Time: {expiration_time}"""
             
             # 创建CF盾任务
             task_id = self.captcha_api.create_cf_task(
-                type="TurnstileTaskProxyless",
+                type="NoCaptchaTaskProxyless",
                 websiteURL=self.website_url,
                 websiteKey=self.website_key
             )
@@ -324,7 +324,7 @@ Expiration Time: {expiration_time}"""
             verify_headers = self.headers.copy()
             verify_headers.update({
                 "content-type": "application/json",
-                "cf-turnstile-response": cf_token
+                "recapcha-response": cf_token
             })
             
             # 如果有gfsessionid，添加到cookie中

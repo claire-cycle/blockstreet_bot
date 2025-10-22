@@ -29,7 +29,7 @@ class YesCaptchaApi:
         response.raise_for_status()
         status = response.json()['status']
         if status == 'ready':
-            return response.json()['solution']['token']
+            return response.json()['solution']['gRecaptchaResponse']
         else:
             return None
 
